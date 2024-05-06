@@ -4,10 +4,10 @@ import 'package:wh40k_command_center/domain/interfaces/api_context.dart';
 import 'package:wh40k_command_center/domain/interfaces/army.dart';
 import 'package:wh40k_command_center/domain/interfaces/battlescribe.dart';
 import 'package:wh40k_command_center/domain/interfaces/repository.dart';
+import 'package:wh40k_command_center/domain/services/army.dart';
 import 'package:wh40k_command_center/infrastructure/data/db_context.dart';
 import 'package:wh40k_command_center/infrastructure/data/db_repository.dart';
 import 'package:wh40k_command_center/infrastructure/externals/battlescribe.dart';
-import 'package:wh40k_command_center/infrastructure/services/army.dart';
 import 'package:wh40k_command_center/presentation/home/home.dart';
 import 'domain/entities/index.dart';
 
@@ -27,7 +27,8 @@ Future<void> main() async {
   getIt.registerFactory<IRepository<Roster>>(() => DatabaseRepository<Roster>());
   getIt.registerFactory<IRepository<Catalogue>>(() => DatabaseRepository<Catalogue>());
   getIt.registerFactory<IRepository<Model>>(() => DatabaseRepository<Model>());
-  getIt.registerSingleton<IArmyService>(ArmyDatabase());
+  getIt.registerFactory<IRepository<RosterUnit>>(() => DatabaseRepository<RosterUnit>());
+  getIt.registerSingleton<IArmyService>(ArmyService());
   getIt.registerSingleton<IBattleScribe>(BattleScribeMock());
 
   runApp(const MyApp());

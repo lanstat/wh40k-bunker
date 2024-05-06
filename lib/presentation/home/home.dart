@@ -5,6 +5,8 @@ import 'package:wh40k_command_center/domain/interfaces/repository.dart';
 import 'package:wh40k_command_center/presentation/importer/importer.dart';
 import 'package:wh40k_command_center/presentation/roster/create.dart';
 
+import '../catalogue/models.dart';
+
 GetIt _getIt = GetIt.instance;
 
 class MyHomePage extends StatefulWidget {
@@ -13,10 +15,10 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MyHomePage> createState() => _ScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _ScreenState extends State<MyHomePage> {
   final IRepository<Roster> _repo = _getIt<IRepository<Roster>>();
   List<Roster> _rosters = [];
 
@@ -68,6 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
         return ListTile(
           title: Text(_rosters[index].name),
           onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => CatalogueViewerPage(catalogueId: _rosters[index].catalogueId)));
           },
         );
       }

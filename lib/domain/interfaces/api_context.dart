@@ -14,6 +14,7 @@ abstract class ApiContext {
     _sets[Catalogue] = () => Catalogue.empty();
     _sets[Roster] = () => Roster.empty();
     _sets[Model] = () => Model.empty();
+    _sets[RosterUnit] = () => RosterUnit.empty();
   }
 
   dynamic get context;

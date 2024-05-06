@@ -10,7 +10,7 @@ class Model extends ITable {
   final List<UpgradeGroup> groups = [];
   final List<Upgrade> upgrades = [];
   String invulnerableSave = '';
-  late Catalogue catalogue;
+  Catalogue catalogue = Catalogue.empty();
 
   Model({
     required this.id,
@@ -27,7 +27,7 @@ class Model extends ITable {
 
   @override
   void fromMap(Map<String, dynamic> map) {
-    id = map['id'];
+    id = map['_id'];
     name = map['name'];
     invulnerableSave = map['in_save'];
     catalogue = Catalogue.empty(id: map['catalogue_id']);

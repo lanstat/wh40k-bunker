@@ -10,10 +10,10 @@ class ImporterPage extends StatefulWidget {
   const ImporterPage({super.key});
 
   @override
-  State<ImporterPage> createState() => _InitPageState();
+  State<ImporterPage> createState() => _ScreenState();
 }
 
-class _InitPageState extends State<ImporterPage> {
+class _ScreenState extends State<ImporterPage> {
   @override
   void initState() {
     super.initState();
@@ -35,7 +35,7 @@ class _InitPageState extends State<ImporterPage> {
         title: const Text('Importacion de catalogos'),
       ),
       body: const Center(
-        child: Text('Procesando'),
+        child: Text('Procesando..'),
       ),
     );
   }

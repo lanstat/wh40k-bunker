@@ -11,10 +11,10 @@ class RosterCreatorPage extends StatefulWidget {
   const RosterCreatorPage({super.key});
 
   @override
-  State<RosterCreatorPage> createState() => _InitPageState();
+  State<RosterCreatorPage> createState() => _ScreenState();
 }
 
-class _InitPageState extends State<RosterCreatorPage> {
+class _ScreenState extends State<RosterCreatorPage> {
   final IRepository<Roster> _repo = _getIt<IRepository<Roster>>();
   final IRepository<Catalogue> _catalogueRepo = _getIt<IRepository<Catalogue>>();
   final _formKey = GlobalKey<FormState>();

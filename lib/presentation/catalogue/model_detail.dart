@@ -3,21 +3,20 @@ import 'package:get_it/get_it.dart';
 import 'package:wh40k_command_center/domain/entities/model.dart';
 import 'package:wh40k_command_center/domain/entities/upgrade.dart';
 import 'package:wh40k_command_center/domain/interfaces/army.dart';
-import 'package:wh40k_command_center/domain/interfaces/battlescribe.dart';
 
-GetIt getIt = GetIt.instance;
+GetIt _getIt = GetIt.instance;
 
-class ModelPage extends StatefulWidget {
-  const ModelPage({super.key, required this.id});
+class ModelDetailPage extends StatefulWidget {
+  const ModelDetailPage({super.key, required this.id});
 
   final String id;
 
   @override
-  State<ModelPage> createState() => _ScreenState();
+  State<ModelDetailPage> createState() => _ScreenState();
 }
 
-class _ScreenState extends State<ModelPage> {
-  final IArmyService _army = getIt<IArmyService>();
+class _ScreenState extends State<ModelDetailPage> {
+  final IArmyService _army = _getIt<IArmyService>();
   final List<bool> _isOpen = [false, false, false];
   Model _model = Model.empty();
 

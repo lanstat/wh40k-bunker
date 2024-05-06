@@ -9,6 +9,8 @@ abstract class Specification<T extends ITable> {
   late T query;
   List<String> get columns;
 
+  void apply();
+
   String where() {
     String tmp = '';
 

@@ -59,6 +59,7 @@ class DatabaseRepository<T extends ITable> extends IRepository<T> {
     Database db = _context.context as Database;
     var instance = _context.getInstance<T>();
     spec.query = instance;
+    spec.apply();
 
     List<Map> maps = await db.query(
       instance.tableName,
