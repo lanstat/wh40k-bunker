@@ -1,3 +1,4 @@
+import 'package:wh40k_command_center/domain/entities/index.dart';
 import 'package:wh40k_command_center/domain/interfaces/api_context.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -8,7 +9,7 @@ class DatabaseContext extends ApiContext {
 
   @override
   Future<void> initialize() async {
-    super.initialize();
+    await super.initialize();
 
     var tmp = await getDatabasesPath();
     String path = '$tmp/roster.db';
@@ -21,4 +22,9 @@ class DatabaseContext extends ApiContext {
 
   @override
   Database get context => _database;
+
+  @override
+  void onModelCreating(Map<Type, (Type, String)> relations) {
+    relations[Ability] = (Model, 'model_id');
+  }
 }

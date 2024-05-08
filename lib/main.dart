@@ -28,6 +28,8 @@ Future<void> main() async {
   getIt.registerFactory<IRepository<Catalogue>>(() => DatabaseRepository<Catalogue>());
   getIt.registerFactory<IRepository<Model>>(() => DatabaseRepository<Model>());
   getIt.registerFactory<IRepository<RosterUnit>>(() => DatabaseRepository<RosterUnit>());
+  getIt.registerFactory<IRepository<Category>>(() => DatabaseRepository<Category>());
+  getIt.registerFactory<IRepository<Ability>>(() => DatabaseRepository<Ability>());
   getIt.registerSingleton<IArmyService>(ArmyService());
   getIt.registerSingleton<IBattleScribe>(BattleScribeMock());
 

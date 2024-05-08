@@ -8,4 +8,6 @@ abstract class IArmyService {
   Future<List<Model>> listModels(String id);
 
   Future<Model> getModel(String id);
+
+  Future<Catalogue> getCatalogue(String id);
 }

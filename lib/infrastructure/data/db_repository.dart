@@ -28,7 +28,16 @@ class DatabaseRepository<T extends ITable> extends IRepository<T> {
   @override
   Future<void> insert(T record) async {
     Database db = _context.context as Database;
-    await db.insert(record.tableName, record.toMap());
+
+    var map = record.toMap();
+    var id = map['_id'];
+    if (id is int && id == 0) {
+      map.remove('_id');
+    } else if (id is String && id == '') {
+      map.remove('_id');
+    }
+
+    await db.insert(record.tableName, map);
   }
 
   @override
@@ -58,14 +67,14 @@ class DatabaseRepository<T extends ITable> extends IRepository<T> {
   Future<List<T>> filter(Specification<T> spec) async {
     Database db = _context.context as Database;
     var instance = _context.getInstance<T>();
-    spec.query = instance;
-    spec.apply();
+
+    var (where, whereArgs) = spec.where();
 
     List<Map> maps = await db.query(
       instance.tableName,
       columns: instance.columnsName,
-      where: spec.where(),
-      whereArgs: spec.whereArgs(),
+      where: where,
+      whereArgs: whereArgs,
     );
 
     return maps.map<T>((e) {
@@ -83,7 +92,7 @@ class DatabaseRepository<T extends ITable> extends IRepository<T> {
     var maps =await db.query(
       instance.tableName,
       columns: instance.columnsName,
-      where: 'id=?',
+      where: '_id=?',
       whereArgs: [id]
     );
 
